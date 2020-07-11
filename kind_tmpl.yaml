@@ -1,0 +1,10 @@
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  image: kindest/node:v1.18.2@sha256:7b27a6d0f2517ff88ba444025beae41491b016bc6af573ba467b70c5e8e0d85f
+networking:
+  ipFamily: ipv4
+  apiServerAddress: 127.0.0.1
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.96.0.0/12
