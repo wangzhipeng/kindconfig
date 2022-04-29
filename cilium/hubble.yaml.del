@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-hubble-path
+  namespace: kube-system
+spec:
+  stripPrefix:
+    prefixes:
+    - /hubble
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hubble
+  namespace: kube-system
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/hubble`)
+    kind: Rule
+    middlewares:
+    - name: strip-hubble-path
+    services:
+    - name: hubble-ui
+      port: 80
