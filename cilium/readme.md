@@ -6,8 +6,9 @@ cilium install
 
 cilium hubble enable --ui
 
+kubectl  create ns  traefik
 
-helm install traefik traefik/traefik
+helm install -n traefik  traefik traefik/traefik
 
 
 
